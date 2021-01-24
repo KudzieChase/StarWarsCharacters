@@ -3,7 +3,7 @@ ext {
     //Android Properties
     applicationId = 'com.kudzaichasinda.starwarscharacters'
     andriodMinSdkVersiob = 21
-    kotlinVersion = '1.4.10'
+    kotlinVersion = '1.4.21'
     versionCode = 1
     versionName = "1.0"
 
@@ -51,9 +51,19 @@ ext {
     assertJVersion = '3.13.2'
     mockitoKotlinVersion = '2.1.0'
 
-    domainDependencies = []
+    domainDependencies = [
+            kotlinCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}",
+            javaxAnnotation : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject     : "javax.inject:javax.inject:${javaxInjectVersion}",
+            kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
+    ]
 
-    domainTestDependencies = []
+    domainTestDependencies = [
+            junit           : "junit:junit:${jUnitVersion}",
+            mockito         : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}",
+            assertj         : "org.assertj:assertj-core:${assertJVersion}",
+            kotlinCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-test:${coroutinesVersion}"
+    ]
 
     dataDependencies = []
 
