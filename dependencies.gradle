@@ -1,0 +1,65 @@
+ext {
+
+    //Android Properties
+    applicationId = 'com.kudzaichasinda.starwarscharacters'
+    andriodMinSdkVersiob = 21
+    kotlinVersion = '1.4.10'
+    versionCode = 1
+    versionName = "1.0"
+
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+    //Android Libs and Widgets Versions
+    appCompatVersion = '1.2.0'
+    ktxVersion = '1.3.2'
+    constraintLayoutVersion = '1.1.3'
+    coroutinesVersion = '1.4.0'
+    fragmentVersion = '1.2.5'
+    activityVersion = '1.1.0'
+    androidXLifecycleVersion = '2.2.0'
+    multiDexVersion = '2.0.1'
+    navigationVersion = '2.3.2'
+    recyclerViewVersion = '1.2.0-alpha02'
+    materialDesignVersion = '1.2.0'
+    cardViewVersion = '1.0.0'
+
+
+    //Networking Versions
+    retrofitVersion = '2.9.0'
+    okHttpVersion = '4.8.1'
+    moshiVersion = '1.9.3'
+
+    //Data Versions
+    roomVersion = '2.2.5'
+    dataStoreVersion = '1.0.0-alpha05'
+    livedataktxVersion = '2.2.0'
+
+    //Logging Versions
+    timberVersion = '4.7.1'
+
+    //Injection
+    javaxInjectVersion = '1'
+    javaxAnnotationVersion = '1.0'
+
+    //Testing Version
+    jUnitVersion = '4.12'
+    androidTestRunnerVersion = '1.3.0-alpha02'
+    androidTestRulesVersion = '1.3.0-alpha02'
+    jUnitExtVersion = '1.1.1'
+    testCoreVersion = '1.2.0'
+    espressoVersion = '3.3.0-alpha02'
+    assertJVersion = '3.13.2'
+    mockitoKotlinVersion = '2.1.0'
+
+    domainDependencies = []
+
+    domainTestDependencies = []
+
+    dataDependencies = []
+
+    dataTestDependencies = []
+
+    appDependencies = []
+
+    appTestDepencies = []
+}
