@@ -23,7 +23,6 @@ ext {
     materialDesignVersion = '1.2.0'
     cardViewVersion = '1.0.0'
 
-
     //Networking Versions
     retrofitVersion = '2.9.0'
     okHttpVersion = '4.8.1'
@@ -65,11 +64,66 @@ ext {
             kotlinCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-test:${coroutinesVersion}"
     ]
 
-    dataDependencies = []
+    dataDependencies = [
+            kotlinCoroutines     : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}",
+            androidCoroutines    : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}",
+            javaxAnnotation      : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject          : "javax.inject:javax.inject:${javaxInjectVersion}",
+            androidKtx           : "androidx.core:core-ktx:${ktxVersion}",
+            retrofit             : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            moshiConverterFactory: "com.squareup.retrofit2:converter-moshi:${retrofitVersion}",
+            okHttp               : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+            room                 : "androidx.room:room-runtime:${roomVersion}",
+            roomCompiler         : "androidx.room:room-compiler:${roomVersion}",
+            roomKtx              : "androidx.room:room-ktx:${roomVersion}",
+            moshi                : "com.squareup.moshi:moshi-kotlin:${moshiVersion}",
+            moshiCodegen         : "com.squareup.moshi:moshi-kotlin-codegen:${moshiVersion}",
+            okHttpLogger         : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+            dataStorePrefs       : "androidx.datastore:datastore-preferences:${dataStoreVersion}",
+    ]
 
-    dataTestDependencies = []
+    dataTestDependencies = [
+            junit              : "junit:junit:${jUnitVersion}",
+            mockito            : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}",
+            assertj            : "org.assertj:assertj-core:${assertJVersion}",
+            okHttpMockWebServer: "com.squareup.okhttp3:mockwebserver:${okHttpVersion}",
+            kotlinCoroutines   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${coroutinesVersion}",
+            androidTestRunner  : "androidx.test:runner:${androidTestRunnerVersion}",
+            jUnitExt           : "androidx.test.ext:junit:${jUnitExtVersion}",
+            testCore           : "androidx.test:core:${testCoreVersion}",
+            androidTestRules   : "androidx.test:rules:${androidTestRulesVersion}"
+    ]
 
-    appDependencies = []
+    appDependencies = [
+            javaxAnnotation              : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject                  : "javax.inject:javax.inject:${javaxInjectVersion}",
+            kotlin                       : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            androidKtx                   : "androidx.core:core-ktx:${ktxVersion}",
+            constraintLayout             : "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}",
+            appCompat                    : "androidx.appcompat:appcompat:${appCompatVersion}",
+            materialDesign               : "com.google.android.material:material:${materialDesignVersion}",
+            kotlinCoroutines             : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}",
+            androidCoroutines            : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}",
+            timber                       : "com.jakewharton.timber:timber:${timberVersion}",
+            cardView                     : "androidx.cardview:cardview:${cardViewVersion}",
+            recyclerView                 : "androidx.recyclerview:recyclerview:${recyclerViewVersion}",
+            androidxFragment             : "androidx.fragment:fragment:${fragmentVersion}",
+            androidxActivity             : "androidx.activity:activity-ktx:${activityVersion}",
+            androidxLifecycleExtensions  : "androidx.lifecycle:lifecycle-extensions:${androidXLifecycleVersion}",
+            androidxLifecycleViewmodelKtx: "androidx.lifecycle:lifecycle-viewmodel-ktx:${androidXLifecycleVersion}",
+            androidLiveDataKtx           : "androidx.lifecycle:lifecycle-livedata-ktx:${livedataktxVersion}",
+            multiDex                     : "androidx.multidex:multidex:${multiDexVersion}",
+            navigationFragment           : "androidx.navigation:navigation-fragment-ktx:${navigationVersion}",
+            navigationUI                 : "androidx.navigation:navigation-ui-ktx:${navigationVersion}",
+            dataStorePrefs               : "androidx.datastore:datastore-preferences:${dataStoreVersion}",
+    ]
 
-    appTestDepencies = []
+    appTestDependencies = [
+            junit            : "junit:junit:${jUnitVersion}",
+            mockito          : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}",
+            assertj          : "org.assertj:assertj-core:${assertJVersion}",
+            androidTestRunner: "androidx.test:runner:${androidTestRunnerVersion}",
+            espresso         : "androidx.test.espresso:espresso-core:${espressoVersion}",
+            kotlinCoroutines : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${coroutinesVersion}"
+    ]
 }

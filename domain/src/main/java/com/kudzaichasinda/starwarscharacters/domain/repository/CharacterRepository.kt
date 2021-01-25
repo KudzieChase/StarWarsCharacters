@@ -9,10 +9,10 @@ interface CharacterRepository {
 
     suspend fun getCharacterInfo(url: String): Character
 
+    suspend fun getSpecieInfo(urls: List<String>): List<Specie>
+
     suspend fun getPlanetInfo(url: String): Planet
 
-    suspend fun getSpecieInfo(url: String): Specie
-
-    suspend fun getFilmInfo(url: String): Film
+    suspend fun getFilmInfo(urls: List<String>): List<Film>
 
 }
