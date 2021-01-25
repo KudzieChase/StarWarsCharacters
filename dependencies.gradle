@@ -49,6 +49,7 @@ ext {
     espressoVersion = '3.3.0-alpha02'
     assertJVersion = '3.13.2'
     mockitoKotlinVersion = '2.1.0'
+    truthVersion = '1.0.1'
 
     domainDependencies = [
             kotlinCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}",
@@ -61,7 +62,8 @@ ext {
             junit           : "junit:junit:${jUnitVersion}",
             mockito         : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}",
             assertj         : "org.assertj:assertj-core:${assertJVersion}",
-            kotlinCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-test:${coroutinesVersion}"
+            kotlinCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-test:${coroutinesVersion}",
+            truth           : "com.google.truth:truth:${truthVersion}"
     ]
 
     dataDependencies = [

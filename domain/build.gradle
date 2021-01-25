@@ -20,5 +20,6 @@ dependencies {
     testImplementation domainTestDependencies.junit
     testImplementation domainTestDependencies.mockito
     testImplementation domainTestDependencies.assertj
+    testImplementation domainTestDependencies.truth
     testImplementation domainTestDependencies.kotlinCoroutines
 }
