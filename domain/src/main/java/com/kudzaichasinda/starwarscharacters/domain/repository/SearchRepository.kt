@@ -4,5 +4,5 @@ import com.kudzaichasinda.starwarscharacters.domain.model.Character
 import kotlinx.coroutines.flow.Flow
 
 interface SearchRepository {
-    fun searchCharacter(name: String): Flow<List<Character>>
+    suspend fun searchCharacter(name: String): Flow<List<Character>>
 }

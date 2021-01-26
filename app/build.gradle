@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -15,6 +18,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildFeatures {
+        dataBinding = true
     }
 
     buildTypes {
@@ -33,13 +42,34 @@ android {
 }
 
 dependencies {
+    def appDependencies = rootProject.ext.appDependencies
+    def appTestDependencies = rootProject.ext.appTestDependencies
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.21"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation project(':data')
+    implementation project(':domain')
+
+    implementation appDependencies.materialDesign
+    implementation appDependencies.kotlin
+    implementation appDependencies.androidKtx
+    implementation appDependencies.appCompat
+    implementation appDependencies.constraintLayout
+    implementation appDependencies.recyclerView
+    implementation appDependencies.cardView
+    implementation appDependencies.hilt
+    implementation appDependencies.cardView
+    implementation appDependencies.kotlinCoroutines
+    implementation appDependencies.androidCoroutines
+    implementation appDependencies.androidxLifecycleViewmodelKtx
+    implementation appDependencies.androidLiveDataKtx
+
+    implementation appDependencies.androidxFragment
+    implementation appDependencies.androidxActivity
+
+    implementation appDependencies.navigationFragment
+    implementation appDependencies.navigationUI
+
+    kapt appDependencies.hiltCompiler
+    testImplementation appTestDependencies.junit
+    androidTestImplementation appTestDependencies.androidTestRunner
+    androidTestImplementation appTestDependencies.espresso
 }

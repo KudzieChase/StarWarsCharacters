@@ -12,7 +12,7 @@ import javax.inject.Inject
 class SearchCharacter @Inject constructor(
     private val repository: SearchRepository
 ) : FlowUseCase<List<Character>, String>() {
-    override operator fun invoke(params: String?): Flow<List<Character>> {
+    override suspend operator fun invoke(params: String?): Flow<List<Character>> {
         if (params == null) throw IllegalArgumentException("Parameters for SearchCharacter cannot be null")
         return repository.searchCharacter(params).flowOn(Dispatchers.IO)
     }
