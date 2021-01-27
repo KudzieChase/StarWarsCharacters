@@ -69,7 +69,9 @@ dependencies {
     implementation appDependencies.navigationUI
 
     kapt appDependencies.hiltCompiler
+
     testImplementation appTestDependencies.junit
+    androidTestImplementation appTestDependencies.jUnitExt
     androidTestImplementation appTestDependencies.androidTestRunner
     androidTestImplementation appTestDependencies.espresso
 }

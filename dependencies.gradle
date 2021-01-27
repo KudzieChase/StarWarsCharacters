@@ -130,6 +130,7 @@ ext {
             assertj          : "org.assertj:assertj-core:${assertJVersion}",
             androidTestRunner: "androidx.test:runner:${androidTestRunnerVersion}",
             espresso         : "androidx.test.espresso:espresso-core:${espressoVersion}",
-            kotlinCoroutines : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${coroutinesVersion}"
+            kotlinCoroutines : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${coroutinesVersion}",
+            jUnitExt           : "androidx.test.ext:junit:${jUnitExtVersion}",
     ]
 }
