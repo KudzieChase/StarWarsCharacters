@@ -18,6 +18,10 @@ android {
         consumerProguardFiles "consumer-rules.pro"
     }
 
+    sourceSets {
+        test.resources.srcDirs += 'src/unitTests/resources'
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -59,4 +63,6 @@ dependencies {
     androidTestImplementation dataTestDependencies.jUnitExt
     androidTestImplementation dataTestDependencies.testCore
     androidTestImplementation dataTestDependencies.androidTestRules
+    testImplementation dataTestDependencies.kotlinCoroutines
+    testImplementation dataTestDependencies.truth
 }

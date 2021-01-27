@@ -31,12 +31,12 @@ class SearchCharacterTest {
         searchCharacter = SearchCharacter(repository = searchRepository)
     }
 
-    private fun stubSearchRepositorySearchCharacter(results: Flow<List<Character>>) {
+    private suspend fun stubSearchRepositorySearchCharacter(results: Flow<List<Character>>) {
         whenever(searchCharacter(FakeData.characterName))
             .thenReturn(results)
     }
 
-    private fun stubSearchRepositorySearchCharacterNotFound() {
+    private suspend fun stubSearchRepositorySearchCharacterNotFound() {
         whenever((searchCharacter("Grogu")))
             .thenReturn(flowOf(listOf()))
     }

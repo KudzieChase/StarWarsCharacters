@@ -15,7 +15,7 @@ class SearchRepositoryImpl @Inject constructor(
 
     override suspend fun searchCharacter(name: String): Flow<List<Character>> {
         return flowOf(
-            mapper.mapToDomainList(service.searchCharacter(name))
+            mapper.mapToDomainList(service.searchCharacter(name).results)
         )
     }
 }

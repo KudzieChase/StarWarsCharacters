@@ -1,9 +1,6 @@
 package com.kudzaichasinda.starwarscharacters.data.remote.service
 
-import com.kudzaichasinda.starwarscharacters.data.model.CharacterEntity
-import com.kudzaichasinda.starwarscharacters.data.model.FilmEntity
-import com.kudzaichasinda.starwarscharacters.data.model.PlanetEntity
-import com.kudzaichasinda.starwarscharacters.data.model.SpecieEntity
+import com.kudzaichasinda.starwarscharacters.data.model.*
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Url
@@ -12,7 +9,7 @@ import retrofit2.http.Url
 interface ApiService {
 
     @GET("people/")
-    suspend fun searchCharacter(@Query("search") characterName: String): List<CharacterEntity>
+    suspend fun searchCharacter(@Query("search") characterName: String): SearchCharacterResponseEntity
 
     @GET
     suspend fun getCharacterInfo(@Url url: String): CharacterEntity

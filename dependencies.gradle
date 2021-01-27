@@ -94,7 +94,8 @@ ext {
             androidTestRunner  : "androidx.test:runner:${androidTestRunnerVersion}",
             jUnitExt           : "androidx.test.ext:junit:${jUnitExtVersion}",
             testCore           : "androidx.test:core:${testCoreVersion}",
-            androidTestRules   : "androidx.test:rules:${androidTestRulesVersion}"
+            androidTestRules   : "androidx.test:rules:${androidTestRulesVersion}",
+            truth              : "com.google.truth:truth:${truthVersion}"
     ]
 
     appDependencies = [
