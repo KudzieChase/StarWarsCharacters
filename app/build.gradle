@@ -66,6 +66,7 @@ dependencies {
     implementation appDependencies.androidxActivity
     implementation appDependencies.navigationFragment
     implementation appDependencies.navigationUI
+    implementation appDependencies.lottie
 
     //DI
     implementation appDependencies.hilt

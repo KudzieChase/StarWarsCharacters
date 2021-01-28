@@ -6,6 +6,7 @@ import com.kudzaichasinda.starwarscharacters.domain.interactor.search.SearchChar
 import com.kudzaichasinda.starwarscharacters.mapper.CharacterViewMapper
 import com.kudzaichasinda.starwarscharacters.model.CharacterView
 import com.kudzaichasinda.starwarscharacters.util.Result
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -18,16 +19,31 @@ class SearchViewModel @ViewModelInject constructor(
     val searchResults: StateFlow<Result<List<CharacterView>>>
         get() = _searchResults
 
+    private val searchInput = MutableStateFlow("")
+
+    init {
+        viewModelScope.launch {
+            searchInput.debounce(500).collect {
+                if (it.isEmpty()) {
+                    _searchResults.value = Result.Idle
+                } else {
+                    searchCharacter(it)
+                        .catch { throwable ->
+                            _searchResults.value = Result.Error(throwable.message)
+                        }
+                        .collect { character ->
+                            _searchResults.value = Result.Success(mapper.mapToViewList(character))
+                        }
+                }
+            }
+        }
+    }
+
     fun performSearch(characterName: String) {
         _searchResults.value = Result.Loading
+
         viewModelScope.launch {
-            searchCharacter(characterName)
-                .debounce(500)
-                .mapLatest {
-                    _searchResults.value = Result.Success(mapper.mapToViewList(it))
-                }.catch { throwable ->
-                    _searchResults.value = Result.Error(throwable.message)
-                }
+            searchInput.emit(characterName)
         }
     }
 

@@ -1,3 +1,12 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Star Wars Characters</string>
+    <string name="search_character">Search Star Wars Character</string>
+    <string name="settings">Settings</string>
+    <string name="animation_searching_text" tools:ignore="Typos">Searching for characters in a Galaxy far far away....</string>
+    <string name="animation_paused_text">Enter character name above to begin</string>
+    <string name="no_results">No Results</string>
+    <string name="character_information">Character Information</string>
+    <string name="film_title">Films that this Character featured in:</string>
+    <string name="specie_title">Facts about this species</string>
+    <string name="planet_title">Some Planet Information</string>
 </resources>

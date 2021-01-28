@@ -23,6 +23,9 @@ ext {
     materialDesignVersion = '1.2.1'
     cardViewVersion = '1.0.0'
 
+    //Animation
+    lottieVersion = '3.6.0'
+
     //Networking Versions
     retrofitVersion = '2.9.0'
     okHttpVersion = '4.8.1'
@@ -124,7 +127,8 @@ ext {
             hilt                         : "com.google.dagger:hilt-android:${hiltVersion}",
             hiltCompiler                 : "com.google.dagger:hilt-android-compiler:${hiltVersion}",
             hiltViewModel                : "androidx.hilt:hilt-lifecycle-viewmodel:${hiltViewModelVersion}",
-            hiltViewModelCompiler        : "androidx.hilt:hilt-compiler:${hiltViewModelVersion}"
+            hiltViewModelCompiler        : "androidx.hilt:hilt-compiler:${hiltViewModelVersion}",
+            lottie                       : "com.airbnb.android:lottie:${lottieVersion}"
     ]
 
     appTestDependencies = [
