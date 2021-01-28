@@ -55,21 +55,25 @@ dependencies {
     implementation appDependencies.constraintLayout
     implementation appDependencies.recyclerView
     implementation appDependencies.cardView
-    implementation appDependencies.hilt
     implementation appDependencies.cardView
     implementation appDependencies.kotlinCoroutines
     implementation appDependencies.androidCoroutines
     implementation appDependencies.androidxLifecycleViewmodelKtx
     implementation appDependencies.androidLiveDataKtx
 
+    //Navigation
     implementation appDependencies.androidxFragment
     implementation appDependencies.androidxActivity
-
     implementation appDependencies.navigationFragment
     implementation appDependencies.navigationUI
 
+    //DI
+    implementation appDependencies.hilt
+    implementation appDependencies.hiltViewModel
     kapt appDependencies.hiltCompiler
+    kapt appDependencies.hiltViewModelCompiler
 
+    //Testing
     testImplementation appTestDependencies.junit
     androidTestImplementation appTestDependencies.jUnitExt
     androidTestImplementation appTestDependencies.androidTestRunner

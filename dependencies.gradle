@@ -40,6 +40,7 @@ ext {
     javaxInjectVersion = '1'
     javaxAnnotationVersion = '1.0'
     hiltVersion = '2.28.3-alpha'
+    hiltViewModelVersion = '1.0.0-alpha02'
 
     //Testing Version
     jUnitVersion = '4.12'
@@ -121,7 +122,9 @@ ext {
             navigationUI                 : "androidx.navigation:navigation-ui-ktx:${navigationVersion}",
             dataStorePrefs               : "androidx.datastore:datastore-preferences:${dataStoreVersion}",
             hilt                         : "com.google.dagger:hilt-android:${hiltVersion}",
-            hiltCompiler                 : "com.google.dagger:hilt-android-compiler:${hiltVersion}"
+            hiltCompiler                 : "com.google.dagger:hilt-android-compiler:${hiltVersion}",
+            hiltViewModel                : "androidx.hilt:hilt-lifecycle-viewmodel:${hiltViewModelVersion}",
+            hiltViewModelCompiler        : "androidx.hilt:hilt-compiler:${hiltViewModelVersion}"
     ]
 
     appTestDependencies = [
@@ -131,6 +134,6 @@ ext {
             androidTestRunner: "androidx.test:runner:${androidTestRunnerVersion}",
             espresso         : "androidx.test.espresso:espresso-core:${espressoVersion}",
             kotlinCoroutines : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${coroutinesVersion}",
-            jUnitExt           : "androidx.test.ext:junit:${jUnitExtVersion}",
+            jUnitExt         : "androidx.test.ext:junit:${jUnitExtVersion}",
     ]
 }
