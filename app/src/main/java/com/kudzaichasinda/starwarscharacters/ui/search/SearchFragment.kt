@@ -52,6 +52,10 @@ class SearchFragment : Fragment() {
 
             searchInput.addTextChangedListener(textWatcher)
 
+            clearText.setOnClickListener {
+                clear()
+            }
+
             viewModel.searchResults.asLiveData()
                 .observe(viewLifecycleOwner, { result ->
                     when (result) {
@@ -73,6 +77,8 @@ class SearchFragment : Fragment() {
                             hideRecyclerView()
                         }
                         is Result.Error -> {
+                            isLoading = false
+                            showLoadingStateLayout()
                             hideRecyclerView()
                             Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT)
                                 .show()
@@ -80,6 +86,11 @@ class SearchFragment : Fragment() {
                     }
                 })
         }
+    }
+
+    private fun clear() {
+        binding.searchInput.editableText.clear()
+        viewModel.performSearch("")
     }
 
     private fun showLoadingStateLayout() {
@@ -121,6 +132,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun onItemClick(character: CharacterView) {
+        clear()
         val directions = SearchFragmentDirections.actionSearchFragmentToCharacterFragment(
             character.url
         )

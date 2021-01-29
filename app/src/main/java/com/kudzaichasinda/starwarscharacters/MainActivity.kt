@@ -1,7 +1,7 @@
 package com.kudzaichasinda.starwarscharacters
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.kudzaichasinda.starwarscharacters.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
