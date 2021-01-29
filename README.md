@@ -27,7 +27,7 @@ In order to run this project you need the following:
 
 ## My Thought Process
 
-The application has been split into 3 modules.
+The application has been split into 3 modules - Domain, Data and App.
 
 ### Domain
 
@@ -73,22 +73,36 @@ as compared to RxJava.
 ## Tests
 
 I wrote unit tests for each Layer and integration tests in the presentation layer in the form of Instrumentation tests that were targeting the ViewModel instances.
-
 The data layer tests mocked the server responses using Okhttp's MockServer.
+
+I tried to write as many tests as I could think of following a Test Driven approach esp in the Data and Domain Layers.
+I did not write UI tests.
+
+## Opportunities for improvement?
+
+I noticed that the app could have been improved by adding a Room Database for persistence. Maybe allowing a user to save searches and revisit them later.
+I also thought the application could have used themes and styles for dark mode as well as adding a different fancy font to delight users.
+These additions were not made due to the time I had to implement.
+
+## Other things to note
+
+I used Flow to reduce the number of requests made by the performSearch function. Namely I used the debounce operator to wait for 500ms before making a request as a means to listen whether or not a user had completed typing.
+
+This strategy saves a lot of bandwidth because we reduce number of requests that end up going to the server.
 
 
 ## Libraries I chose to use
 
 * [Kotlin](https://kotlinlang.org/)
-* [Kotlin Coroutines]()
-* [Flow]()
-* [Retrofit](http://square.github.io/retrofit/)
-* [Okhttp](http://square.github.io/okhttp/)
-* [Mockito](http://site.mockito.org/)
-* [Moshi]()
-* [Dagger Hilt]()
-* [Lottie]()
-* [Truth]()
+* [Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)
+* [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html)
+* [Retrofit](http://square.github.io/retrofit/) - An http client for android
+* [Okhttp](http://square.github.io/okhttp/) - For networking requests
+* [Mockito](http://site.mockito.org/) - For mocking instances
+* [Moshi](https://github.com/square/moshi) - For parsing JSON into Objects
+* [Dagger Hilt](https://dagger.dev/hilt/) - For dependency injection
+* [Lottie Android](https://github.com/airbnb/lottie-android) - For animation
+* [Truth](https://truth.dev/) - For assertions during testing
 * Jetpack Libraries
 
 
