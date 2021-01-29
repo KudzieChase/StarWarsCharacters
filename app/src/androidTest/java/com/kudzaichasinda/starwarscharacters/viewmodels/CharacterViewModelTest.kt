@@ -105,6 +105,9 @@ class CharacterViewModelTest {
             viewModel.getFilms(listOf("Something about", "Joining a Jedi Temple"))
 
             val response = viewModel.filmLiveData.value!!
+
+            assertThat(response).isInstanceOf(Idle::class.java)
+
             when (response) {
                 is Success -> {
                     assertThat(response.data).isEqualTo(FakeData.fakeFilms)
@@ -127,6 +130,9 @@ class CharacterViewModelTest {
             viewModel.getHomeWorld("Harare")
 
             val response = viewModel.planetLiveData.value!!
+
+            assertThat(response).isInstanceOf(Idle::class.java)
+
             when (response) {
                 is Success -> {
                     assertThat(response.data).isEqualTo(FakeData.fakePlanet)
@@ -148,9 +154,14 @@ class CharacterViewModelTest {
             viewModel.getSpecies(listOf("Buy", "Doge", "Coin"))
 
             val response = viewModel.specieLiveData.value!!
+
+            assertThat(response).isInstanceOf(Idle::class.java)
+
             when (response) {
                 is Success -> {
                     assertThat(response.data).isEqualTo(FakeData.fakeSpecies)
+                }
+                else -> {
                 }
             }
         } finally {
