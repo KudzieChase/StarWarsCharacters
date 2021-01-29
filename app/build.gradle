@@ -76,6 +76,10 @@ dependencies {
 
     //Testing
     testImplementation appTestDependencies.junit
+    testImplementation appTestDependencies.truth
+    androidTestImplementation appTestDependencies.truth
+    androidTestImplementation appTestDependencies.arch
+    androidTestImplementation appTestDependencies.coreKtx
     androidTestImplementation appTestDependencies.jUnitExt
     androidTestImplementation appTestDependencies.androidTestRunner
     androidTestImplementation appTestDependencies.espresso

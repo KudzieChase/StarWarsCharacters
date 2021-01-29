@@ -55,6 +55,8 @@ ext {
     assertJVersion = '3.13.2'
     mockitoKotlinVersion = '2.1.0'
     truthVersion = '1.0.1'
+    archTestingVersion = '2.1.0'
+    ktxTestingVersion = '1.2.0'
 
     domainDependencies = [
             kotlinCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}",
@@ -139,5 +141,8 @@ ext {
             espresso         : "androidx.test.espresso:espresso-core:${espressoVersion}",
             kotlinCoroutines : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${coroutinesVersion}",
             jUnitExt         : "androidx.test.ext:junit:${jUnitExtVersion}",
+            truth            : "com.google.truth:truth:${truthVersion}",
+            arch             : "androidx.arch.core:core-testing:${archTestingVersion}",
+            coreKtx          : "androidx.test:core-ktx:${ktxTestingVersion}",
     ]
 }
