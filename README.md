@@ -108,7 +108,7 @@ This strategy saves a lot of bandwidth because we reduce number of requests that
 
 ## Screenshots
 
-<img src="https://user-images.githubusercontent.com/16834730/106307733-607f2c00-6268-11eb-8ff7-f9d89767a30e.png"/> <img src="https://user-images.githubusercontent.com/16834730/106307752-67a63a00-6268-11eb-96f2-805ed60d7fa2.png"/>
+<img src="https://user-images.githubusercontent.com/16834730/106307733-607f2c00-6268-11eb-8ff7-f9d89767a30e.png" width="250px"/> <img src="https://user-images.githubusercontent.com/16834730/106307752-67a63a00-6268-11eb-96f2-805ed60d7fa2.png" width="250px"/>
 
 <br>
 ## P.S.
