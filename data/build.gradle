@@ -52,7 +52,6 @@ dependencies {
     implementation dataDependencies.okHttp
     implementation dataDependencies.moshi
     implementation dataDependencies.okHttpLogger
-    implementation dataDependencies.dataStorePrefs
 
     kapt dataDependencies.moshiCodegen
 

@@ -32,8 +32,6 @@ ext {
     moshiVersion = '1.9.3'
 
     //Data Versions
-    roomVersion = '2.2.5'
-    dataStoreVersion = '1.0.0-alpha05'
     livedataktxVersion = '2.2.0'
 
     //Logging Versions
@@ -82,13 +80,9 @@ ext {
             retrofit             : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             moshiConverterFactory: "com.squareup.retrofit2:converter-moshi:${retrofitVersion}",
             okHttp               : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
-            room                 : "androidx.room:room-runtime:${roomVersion}",
-            roomCompiler         : "androidx.room:room-compiler:${roomVersion}",
-            roomKtx              : "androidx.room:room-ktx:${roomVersion}",
             moshi                : "com.squareup.moshi:moshi-kotlin:${moshiVersion}",
             moshiCodegen         : "com.squareup.moshi:moshi-kotlin-codegen:${moshiVersion}",
             okHttpLogger         : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
-            dataStorePrefs       : "androidx.datastore:datastore-preferences:${dataStoreVersion}",
     ]
 
     dataTestDependencies = [
@@ -125,7 +119,6 @@ ext {
             multiDex                     : "androidx.multidex:multidex:${multiDexVersion}",
             navigationFragment           : "androidx.navigation:navigation-fragment-ktx:${navigationVersion}",
             navigationUI                 : "androidx.navigation:navigation-ui-ktx:${navigationVersion}",
-            dataStorePrefs               : "androidx.datastore:datastore-preferences:${dataStoreVersion}",
             hilt                         : "com.google.dagger:hilt-android:${hiltVersion}",
             hiltCompiler                 : "com.google.dagger:hilt-android-compiler:${hiltVersion}",
             hiltViewModel                : "androidx.hilt:hilt-lifecycle-viewmodel:${hiltViewModelVersion}",
