@@ -108,3 +108,12 @@ This strategy saves a lot of bandwidth because we reduce number of requests that
 
 ## Screenshots
 
+<img src="https://user-images.githubusercontent.com/16834730/106307733-607f2c00-6268-11eb-8ff7-f9d89767a30e.png"/>
+<img src="https://user-images.githubusercontent.com/16834730/106307752-67a63a00-6268-11eb-96f2-805ed60d7fa2.png"/>
+
+<br>
+## P.S.
+
+I hope you enjoy evaluating my solution and I hope its enough to get me to practice in your Jedi Temple.
+May the code be with you!
+
