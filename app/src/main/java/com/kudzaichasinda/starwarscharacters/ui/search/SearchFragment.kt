@@ -26,6 +26,16 @@ class SearchFragment : Fragment() {
 
     private val viewModel: SearchViewModel by viewModels()
 
+    private val textWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+        override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            viewModel.performSearch(text.toString())
+        }
+
+        override fun afterTextChanged(p0: Editable?) {}
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,15 +50,7 @@ class SearchFragment : Fragment() {
 
         binding.apply {
 
-            searchInput.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-                override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    viewModel.performSearch(text.toString())
-                }
-
-                override fun afterTextChanged(p0: Editable?) {}
-            })
+            searchInput.addTextChangedListener(textWatcher)
 
             viewModel.searchResults.asLiveData()
                 .observe(viewLifecycleOwner, { result ->

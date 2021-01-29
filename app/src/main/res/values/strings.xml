@@ -5,8 +5,17 @@
     <string name="animation_searching_text" tools:ignore="Typos">Searching for characters in a Galaxy far far away....</string>
     <string name="animation_paused_text">Enter character name above to begin</string>
     <string name="no_results">No Results</string>
-    <string name="character_information">Character Information</string>
+    <string name="character_information">Character Information:</string>
     <string name="film_title">Films that this Character featured in:</string>
-    <string name="specie_title">Facts about this species</string>
-    <string name="planet_title">Some Planet Information</string>
+    <string name="specie_title">Facts about their species:</string>
+    <string name="planet_title">Some Information about their Homeworld:</string>
+    <string name="film_description">Film Description:</string>
+    <string name="planet_name">Planet Name:</string>
+    <string name="planet_population">Planet Population:</string>
+    <string name="specie_name">Name:</string>
+    <string name="language">Language:</string>
+    <string name="homeworld">Homeworld:</string>
+    <string name="name">Name:</string>
+    <string name="birth_year">Birth Year:</string>
+    <string name="height">Height:</string>
 </resources>

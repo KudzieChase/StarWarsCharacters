@@ -6,11 +6,11 @@
     <data>
 
         <variable
-            name="character"
-            type="com.kudzaichasinda.starwarscharacters.model.CharacterView" />
+            name="planet"
+            type="com.kudzaichasinda.starwarscharacters.model.PlanetView" />
 
         <variable
-            name="isCharacterLoading"
+            name="isPlanetLoading"
             type="Boolean" />
     </data>
 
@@ -20,11 +20,11 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/label_name"
+            android:id="@+id/label_planet_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/name"
+            android:text="@string/planet_name"
             android:textAppearance="?attr/textAppearanceBody1"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,64 +38,41 @@
             app:layout_constraintGuide_percent="0.4" />
 
         <TextView
-            android:id="@+id/label_birthyear"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/birth_year"
-            android:textAppearance="?attr/textAppearanceBody1"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_name" />
-
-        <TextView
-            android:id="@+id/label_height"
+            android:id="@+id/label_population"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/height"
+            android:text="@string/planet_population"
             android:textAppearance="?attr/textAppearanceBody1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_birthyear" />
+            app:layout_constraintTop_toBottomOf="@+id/label_planet_name" />
 
         <TextView
-            android:id="@+id/name_text"
+            android:id="@+id/planet_name_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{character.name}"
+            android:text="@{planet.name}"
             android:textAppearance="?attr/textAppearanceBody1"
-            app:layout_constraintBottom_toBottomOf="@+id/label_name"
+            app:layout_constraintBottom_toBottomOf="@+id/label_planet_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/label_name"
-            tools:text="Luke Skywalker" />
+            app:layout_constraintTop_toTopOf="@+id/label_planet_name"
+            tools:text="Tatooine" />
 
         <TextView
-            android:id="@+id/birth_text"
+            android:id="@+id/population_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{character.birthYear}"
+            android:text="@{planet.population}"
             android:textAppearance="?attr/textAppearanceBody1"
-            app:layout_constraintBottom_toBottomOf="@+id/label_birthyear"
+            app:layout_constraintBottom_toBottomOf="@+id/label_population"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/label_birthyear"
-            tools:text="17YHH" />
-
-        <TextView
-            android:id="@+id/height_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceBody1"
-            app:formattedHeight="@{character.height}"
-            app:layout_constraintBottom_toBottomOf="@+id/label_height"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/label_height"
-            tools:text="183cm or 6ft 7in" />
+            app:layout_constraintTop_toTopOf="@+id/label_population"
+            tools:text="200000" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -103,17 +80,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:isShowing="@{isCharacterLoading}"
+            app:isShowing="@{isPlanetLoading}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Group
-            android:id="@+id/groupCharacter"
+            android:id="@+id/groupPlanet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="label_height,height_text,label_birthyear,birth_text,label_name,name_text"
-            app:isGroupVisible="@{isCharacterLoading}" />
+            app:constraint_referenced_ids="label_population,population_text,label_planet_name,planet_name_text"
+            app:isGroupVisible="@{isPlanetLoading}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

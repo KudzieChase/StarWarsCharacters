@@ -1,5 +1,6 @@
 package com.kudzaichasinda.starwarscharacters.data.remote.factory
 
+import com.kudzaichasinda.starwarscharacters.data.remote.interceptor.ForceHttpsInterceptor
 import com.kudzaichasinda.starwarscharacters.data.remote.service.ApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -7,6 +8,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
 
 object RetrofitServiceFactory {
 
@@ -37,7 +39,10 @@ object RetrofitServiceFactory {
 
     private fun makeOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(ForceHttpsInterceptor)
             .addInterceptor(httpLoggingInterceptor)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
             .build()
     }
 
