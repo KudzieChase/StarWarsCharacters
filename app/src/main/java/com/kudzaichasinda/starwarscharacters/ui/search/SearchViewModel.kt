@@ -24,10 +24,11 @@ class SearchViewModel @ViewModelInject constructor(
 
     init {
         viewModelScope.launch {
+            //Debounce the input to reduce unnecessary requests to the server
             searchInput.debounce(500).collect {
                 if (it.isEmpty()) {
                     _searchResults.value = Result.Idle
-                }else{
+                } else {
                     searchCharacter(it)
                         .catch { throwable ->
                             if (throwable is UnknownHostException) {
@@ -46,6 +47,10 @@ class SearchViewModel @ViewModelInject constructor(
         }
     }
 
+    /**
+     * If the name is empty then immediately return the Idle State
+     * Otherwise emit the new name
+     * */
     fun performSearch(characterName: String) {
         _searchResults.value = Result.Loading
 
