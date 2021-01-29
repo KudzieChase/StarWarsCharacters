@@ -80,8 +80,15 @@ class CharacterViewModelTest {
                 is Success -> {
                     assertThat(response.data).isEqualTo(FakeData.fakeCharacter)
                 }
-                else -> {
-                    //We aren't really interested in other cases
+                is Idle -> {
+                    assertThat(response).isInstanceOf(Idle::class.java)
+                }
+                is Loading -> {
+                    assertThat(response).isInstanceOf(Loading::class.java)
+                }
+
+                is Error -> {
+                    assertThat(response).isInstanceOf(Error::class.java)
                 }
             }
         } finally {

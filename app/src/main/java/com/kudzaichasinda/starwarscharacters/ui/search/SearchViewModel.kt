@@ -25,18 +25,23 @@ class SearchViewModel @ViewModelInject constructor(
     init {
         viewModelScope.launch {
             searchInput.debounce(500).collect {
-                searchCharacter(it)
-                    .catch { throwable ->
-                        if (throwable is UnknownHostException) {
-                            _searchResults.value =
-                                Result.Error("Failed: No Internet Connection.")
-                        } else {
-                            _searchResults.value = Result.Error(throwable.message)
+                if (it.isEmpty()) {
+                    _searchResults.value = Result.Idle
+                }else{
+                    searchCharacter(it)
+                        .catch { throwable ->
+                            if (throwable is UnknownHostException) {
+                                _searchResults.value =
+                                    Result.Error("Failed: No Internet Connection.")
+                            } else {
+                                _searchResults.value = Result.Error(throwable.message)
+                            }
                         }
-                    }
-                    .collect { character ->
-                        _searchResults.value = Result.Success(mapper.mapToViewList(character))
-                    }
+                        .collect { character ->
+                            _searchResults.value = Result.Success(mapper.mapToViewList(character))
+                        }
+                }
+
             }
         }
     }
