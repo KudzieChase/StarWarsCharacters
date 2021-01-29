@@ -21,7 +21,7 @@ In this repository I attempt to demonstrate the following concepts:
 
 In order to run this project you need the following:
 - Android Studio 4.1.1 or better
-- Gradle 6.5
+- Gradle 6.5 or better
 - JDK 1.8
 - [Android SDK](https://developer.android.com/studio/index.html)
 
@@ -32,7 +32,7 @@ The application has been split into 3 modules - Domain, Data and App.
 ### Domain
 
 The domain layer contains UseCase instances we use to collect data from the Data Layer and then in turn pass it to our Presentation Layer (App).
-I have defined two Use Case Base classes. A general Use case and a FlowUseCase.
+I have defined two UseCase Base classes. A general `UseCase` and a `FlowUseCase`.
 The use cases are referenced from an outer later without directly referencing the specific implementation.
 The layer also has no mapper because it is not supposed to know abything of the outer layers using Dependency inversion principle.
 
@@ -111,6 +111,8 @@ This strategy saves a lot of bandwidth because we reduce number of requests that
 <img src="https://user-images.githubusercontent.com/16834730/106307733-607f2c00-6268-11eb-8ff7-f9d89767a30e.png" width="250px"/> <img src="https://user-images.githubusercontent.com/16834730/106307752-67a63a00-6268-11eb-96f2-805ed60d7fa2.png" width="250px"/>
 
 <br>
+
+
 ## P.S.
 
 I hope you enjoy evaluating my solution and I hope its enough to get me to practice in your Jedi Temple.
