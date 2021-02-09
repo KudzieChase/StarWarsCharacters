@@ -52,6 +52,7 @@ ext {
     espressoVersion = '3.3.0'
     assertJVersion = '3.13.2'
     mockitoKotlinVersion = '2.1.0'
+    mockitoAndroidVersion = '3.7.7'
     truthVersion = '1.0.1'
     archTestingVersion = '2.1.0'
     ktxTestingVersion = '1.2.0'
@@ -83,6 +84,7 @@ ext {
             moshi                : "com.squareup.moshi:moshi-kotlin:${moshiVersion}",
             moshiCodegen         : "com.squareup.moshi:moshi-kotlin-codegen:${moshiVersion}",
             okHttpLogger         : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+            kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
     ]
 
     dataTestDependencies = [
@@ -137,5 +139,6 @@ ext {
             truth            : "com.google.truth:truth:${truthVersion}",
             arch             : "androidx.arch.core:core-testing:${archTestingVersion}",
             coreKtx          : "androidx.test:core-ktx:${ktxTestingVersion}",
+            mockitoAndroid   : "org.mockito:mockito-android:${mockitoAndroidVersion}"
     ]
 }

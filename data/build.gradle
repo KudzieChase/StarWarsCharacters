@@ -44,6 +44,8 @@ dependencies {
 
     implementation project(':domain')
 
+    implementation dataDependencies.kotlin
+    implementation dataDependencies.kotlinCoroutines
     implementation dataDependencies.javaxAnnotation
     implementation dataDependencies.javaxInject
     implementation dataDependencies.androidKtx
