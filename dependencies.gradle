@@ -31,6 +31,9 @@ ext {
     okHttpVersion = '4.8.1'
     moshiVersion = '1.9.3'
 
+    //Room
+    roomVersion = '2.2.6'
+
     //Data Versions
     livedataktxVersion = '2.2.0'
 
@@ -84,7 +87,10 @@ ext {
             moshi                : "com.squareup.moshi:moshi-kotlin:${moshiVersion}",
             moshiCodegen         : "com.squareup.moshi:moshi-kotlin-codegen:${moshiVersion}",
             okHttpLogger         : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
-            kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
+            kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            room                 : "androidx.room:room-runtime:${roomVersion}",
+            roomCompiler         : "androidx.room:room-compiler:${roomVersion}",
+            roomKtx              : "androidx.room:room-ktx:${roomVersion}"
     ]
 
     dataTestDependencies = [
@@ -97,7 +103,8 @@ ext {
             jUnitExt           : "androidx.test.ext:junit:${jUnitExtVersion}",
             testCore           : "androidx.test:core:${testCoreVersion}",
             androidTestRules   : "androidx.test:rules:${androidTestRulesVersion}",
-            truth              : "com.google.truth:truth:${truthVersion}"
+            truth              : "com.google.truth:truth:${truthVersion}",
+            room               : "androidx.room:room-testing:${roomVersion}"
     ]
 
     appDependencies = [
@@ -125,7 +132,10 @@ ext {
             hiltCompiler                 : "com.google.dagger:hilt-android-compiler:${hiltVersion}",
             hiltViewModel                : "androidx.hilt:hilt-lifecycle-viewmodel:${hiltViewModelVersion}",
             hiltViewModelCompiler        : "androidx.hilt:hilt-compiler:${hiltViewModelVersion}",
-            lottie                       : "com.airbnb.android:lottie:${lottieVersion}"
+            lottie                       : "com.airbnb.android:lottie:${lottieVersion}",
+            room                 : "androidx.room:room-runtime:${roomVersion}",
+            roomCompiler         : "androidx.room:room-compiler:${roomVersion}",
+            roomKtx              : "androidx.room:room-ktx:${roomVersion}"
     ]
 
     appTestDependencies = [

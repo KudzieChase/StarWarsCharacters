@@ -55,6 +55,10 @@ dependencies {
     implementation dataDependencies.moshi
     implementation dataDependencies.okHttpLogger
 
+    implementation dataDependencies.room
+    implementation dataDependencies.roomKtx
+    kapt dataDependencies.roomCompiler
+
     kapt dataDependencies.moshiCodegen
 
     implementation dataTestDependencies.mockito
@@ -66,4 +70,5 @@ dependencies {
     androidTestImplementation dataTestDependencies.androidTestRules
     testImplementation dataTestDependencies.kotlinCoroutines
     testImplementation dataTestDependencies.truth
+    testImplementation dataTestDependencies.room
 }

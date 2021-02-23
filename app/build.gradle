@@ -68,6 +68,10 @@ dependencies {
     implementation appDependencies.navigationUI
     implementation appDependencies.lottie
 
+    //Room
+    implementation appDependencies.room
+    implementation appDependencies.roomKtx
+
     //DI
     implementation appDependencies.hilt
     implementation appDependencies.hiltViewModel
