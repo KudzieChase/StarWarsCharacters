@@ -3,7 +3,7 @@ ext {
     //Android Properties
     applicationId = 'com.kudzaichasinda.starwarscharacters'
     andriodMinSdkVersiob = 21
-    kotlinVersion = '1.4.21'
+    kotlinVersion = '1.6.10'
     versionCode = 1
     versionName = "1.0"
 
@@ -40,7 +40,7 @@ ext {
     //Injection
     javaxInjectVersion = '1'
     javaxAnnotationVersion = '1.0'
-    hiltVersion = '2.28.3-alpha'
+    hiltVersion = '2.43.2'
     hiltViewModelVersion = '1.0.0-alpha02'
 
     //Testing Version

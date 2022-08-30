@@ -6,6 +6,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -51,7 +52,7 @@ class CharacterFragment : Fragment() {
     }
 
     private fun observeCharacterLiveData() {
-        viewModel.characterLiveData.observe(viewLifecycleOwner, { result ->
+        viewModel.characterLiveData.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Success -> {
                     binding.isCharacterLoading = false
@@ -60,15 +61,15 @@ class CharacterFragment : Fragment() {
                     val character = result.data
                     binding.character = character
 
-                    if (character.species.isEmpty())
+                    if (character.species.isEmpty()) {
                         binding.groupSpecie.visibility = GONE
+                    }
 
                     viewModel.getFilms(character.films)
                     viewModel.getHomeWorld(character.homeWorld)
                     viewModel.getSpecies(character.species)
                 }
                 is Result.Idle -> {
-
                 }
                 is Result.Loading -> {
                     binding.isCharacterLoading = true
@@ -78,11 +79,11 @@ class CharacterFragment : Fragment() {
                     result.message?.let { showToast(it) }
                 }
             }
-        })
+        }
     }
 
     private fun observePlanetLiveData() {
-        viewModel.planetLiveData.observe(viewLifecycleOwner, { result ->
+        viewModel.planetLiveData.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Success -> {
                     binding.isPlanetLoading = false
@@ -91,7 +92,6 @@ class CharacterFragment : Fragment() {
                     binding.planet = planet
                 }
                 is Result.Idle -> {
-
                 }
                 is Result.Loading -> {
                     binding.isPlanetLoading = true
@@ -101,20 +101,20 @@ class CharacterFragment : Fragment() {
                     result.message?.let { showToast(it) }
                 }
             }
-        })
+        }
     }
 
     private fun observeSpecieLiveData() {
-        viewModel.specieLiveData.observe(viewLifecycleOwner, { result ->
+        viewModel.specieLiveData.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Success -> {
                     binding.specieShouldShow = true
 
                     val species = result.data
 
-                    if(species.isEmpty())
+                    if (species.isEmpty()) {
                         binding.specieShouldShow = false
-                    else{
+                    } else {
                         binding.speciesList.apply {
                             adapter = SpecieAdapter().apply {
                                 submitList(species)
@@ -123,7 +123,6 @@ class CharacterFragment : Fragment() {
                     }
                 }
                 is Result.Idle -> {
-
                 }
                 is Result.Loading -> {
                     binding.specieShouldShow = false
@@ -134,11 +133,11 @@ class CharacterFragment : Fragment() {
                     result.message?.let { showToast(it) }
                 }
             }
-        })
+        }
     }
 
     private fun observeFilmLiveData() {
-        viewModel.filmLiveData.observe(viewLifecycleOwner, { result ->
+        viewModel.filmLiveData.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Success -> {
                     binding.isFilmsLoading = false
@@ -151,7 +150,6 @@ class CharacterFragment : Fragment() {
                     }
                 }
                 is Result.Idle -> {
-
                 }
                 is Result.Loading -> {
                     binding.isFilmsLoading = true
@@ -162,7 +160,7 @@ class CharacterFragment : Fragment() {
                     result.message?.let { showToast(it) }
                 }
             }
-        })
+        }
     }
 
     private fun showToast(message: String) {
