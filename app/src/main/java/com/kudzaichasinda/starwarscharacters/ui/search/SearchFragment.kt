@@ -49,7 +49,6 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-
             searchInput.addTextChangedListener(textWatcher)
 
             clearText.setOnClickListener {
@@ -57,7 +56,7 @@ class SearchFragment : Fragment() {
             }
 
             viewModel.searchResults.asLiveData()
-                .observe(viewLifecycleOwner, { result ->
+                .observe(viewLifecycleOwner) { result ->
                     when (result) {
                         is Result.Success -> {
                             isLoading = false
@@ -84,7 +83,7 @@ class SearchFragment : Fragment() {
                                 .show()
                         }
                     }
-                })
+                }
         }
     }
 
@@ -103,7 +102,6 @@ class SearchFragment : Fragment() {
 
     private fun showRecyclerView(results: List<CharacterView>) {
         binding.apply {
-
             resultsList.visibility = VISIBLE
 
             if (results.isEmpty()) {
