@@ -6,7 +6,6 @@ import com.kudzaichasinda.starwarscharacters.domain.repository.SearchRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
-import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 class SearchCharacter @Inject constructor(

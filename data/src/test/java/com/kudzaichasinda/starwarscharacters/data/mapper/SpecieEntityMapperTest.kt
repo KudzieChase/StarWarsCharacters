@@ -28,5 +28,4 @@ class SpecieEntityMapperTest {
         assertThat(domainSpecies.size).isEqualTo(entityList.size)
         assertThat(domainSpecies[0].name).isEqualTo(entityList[0].name)
     }
-
 }

@@ -32,7 +32,7 @@ class CharacterRepositoryImpl @Inject constructor(
             service.getSpecieInfo(it)
         }
 
-        //Grab homeworld planet name from planet to create a displayable species
+        // Grab homeworld planet name from planet to create a displayable species
         val displayableSpecies = mutableListOf<SpecieEntity>()
         species.forEach { specie ->
             try {

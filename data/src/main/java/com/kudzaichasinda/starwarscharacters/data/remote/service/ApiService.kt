@@ -1,10 +1,13 @@
 package com.kudzaichasinda.starwarscharacters.data.remote.service
 
-import com.kudzaichasinda.starwarscharacters.data.model.*
+import com.kudzaichasinda.starwarscharacters.data.model.CharacterEntity
+import com.kudzaichasinda.starwarscharacters.data.model.FilmEntity
+import com.kudzaichasinda.starwarscharacters.data.model.PlanetEntity
+import com.kudzaichasinda.starwarscharacters.data.model.SearchCharacterResponseEntity
+import com.kudzaichasinda.starwarscharacters.data.model.SpecieEntity
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Url
-
 
 interface ApiService {
 
