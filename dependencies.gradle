@@ -10,17 +10,17 @@ ext {
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
     //Android Libs and Widgets Versions
-    appCompatVersion = '1.2.0'
+    appCompatVersion = '1.5.0'
     ktxVersion = '1.8.0'
     constraintLayoutVersion = '2.0.4'
     coroutinesVersion = '1.6.4'
-    fragmentVersion = '1.5.1'
+    fragmentVersion = '1.5.2'
     activityVersion = '1.5.1'
     androidXLifecycleVersion = '2.5.1'
     multiDexVersion = '2.0.1'
-    navigationVersion = '2.4.1'
+    navigationVersion = '2.5.1'
     recyclerViewVersion = '1.2.0-alpha02'
-    materialDesignVersion = '1.2.1'
+    materialDesignVersion = '1.6.1'
     cardViewVersion = '1.0.0'
 
     //Animation
@@ -43,23 +43,23 @@ ext {
     hiltVersion = '2.43.2'
 
     //Testing Version
-    jUnitVersion = '4.12'
-    androidTestRunnerVersion = '1.3.0-alpha02'
+    jUnitVersion = '4.13.2'
+    androidTestRunnerVersion = '1.5.0-alpha04'
     androidTestRulesVersion = '1.3.0-alpha02'
-    jUnitExtVersion = '1.1.2'
+    jUnitExtVersion = '1.1.3'
     testCoreVersion = '1.2.0'
     espressoVersion = '3.3.0'
     assertJVersion = '3.13.2'
     mockitoKotlinVersion = '2.1.0'
-    truthVersion = '1.0.1'
+    truthVersion = '1.1.3'
     archTestingVersion = '2.1.0'
-    ktxTestingVersion = '1.2.0'
+    ktxTestingVersion = '1.4.0'
 
     domainDependencies = [
             kotlinCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}",
             javaxAnnotation : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject     : "javax.inject:javax.inject:${javaxInjectVersion}",
-            kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
+            kotlin          : "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
     ]
 
     domainTestDependencies = [
@@ -76,7 +76,7 @@ ext {
             javaxAnnotation      : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject          : "javax.inject:javax.inject:${javaxInjectVersion}",
             androidKtx           : "androidx.core:core-ktx:${ktxVersion}",
-            kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            kotlin               : "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}",
             retrofit             : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             moshiConverterFactory: "com.squareup.retrofit2:converter-moshi:${retrofitVersion}",
             okHttp               : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
@@ -101,7 +101,7 @@ ext {
     appDependencies = [
             javaxAnnotation              : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject                  : "javax.inject:javax.inject:${javaxInjectVersion}",
-            kotlin                       : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}",
+            kotlin                       : "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}",
             androidKtx                   : "androidx.core:core-ktx:${ktxVersion}",
             constraintLayout             : "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}",
             appCompat                    : "androidx.appcompat:appcompat:${appCompatVersion}",
