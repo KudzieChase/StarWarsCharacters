@@ -1,6 +1,5 @@
 package com.kudzaichasinda.starwarscharacters.ui.character
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,9 +17,12 @@ import com.kudzaichasinda.starwarscharacters.model.FilmView
 import com.kudzaichasinda.starwarscharacters.model.PlanetView
 import com.kudzaichasinda.starwarscharacters.model.SpecieView
 import com.kudzaichasinda.starwarscharacters.util.Result
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CharacterViewModel @ViewModelInject constructor(
+@HiltViewModel
+class CharacterViewModel @Inject constructor(
     private val getCharacterInfo: GetCharacterInfo,
     private val getFilmInfo: GetFilmInfo,
     private val getPlanetInfo: GetPlanetInfo,
@@ -101,5 +103,4 @@ class CharacterViewModel @ViewModelInject constructor(
             }
         }
     }
-
 }

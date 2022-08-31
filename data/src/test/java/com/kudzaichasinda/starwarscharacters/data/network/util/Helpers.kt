@@ -1,4 +1,4 @@
-package com.kudzaichasinda.starwarscharacters.data.network.util
+package com.kudzaichasinda.starwarscharacters.data.network.util // ktlint-disable filename
 
 /**
  * This function fetches our JSON file from our resources folder and reads it

@@ -21,7 +21,6 @@ import com.kudzaichasinda.starwarscharacters.model.PlanetView
 import com.kudzaichasinda.starwarscharacters.model.SpecieView
 import com.kudzaichasinda.starwarscharacters.ui.character.CharacterViewModel
 import com.kudzaichasinda.starwarscharacters.util.Result
-import com.kudzaichasinda.starwarscharacters.util.Result.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -77,14 +76,14 @@ class CharacterViewModelTest {
             val response = viewModel.characterLiveData.value!!
 
             when (response) {
-                is Success -> {
+                is Result.Success -> {
                     assertThat(response.data).isEqualTo(FakeData.fakeCharacter)
                 }
-                is Idle -> {
-                    assertThat(response).isInstanceOf(Idle::class.java)
+                is Result.Idle -> {
+                    assertThat(response).isInstanceOf(Result.Idle::class.java)
                 }
-                is Loading -> {
-                    assertThat(response).isInstanceOf(Loading::class.java)
+                is Result.Loading -> {
+                    assertThat(response).isInstanceOf(Result.Loading::class.java)
                 }
 
                 is Error -> {
@@ -106,16 +105,15 @@ class CharacterViewModelTest {
 
             val response = viewModel.filmLiveData.value!!
 
-            assertThat(response).isInstanceOf(Idle::class.java)
+            assertThat(response).isInstanceOf(Result.Idle::class.java)
 
             when (response) {
-                is Success -> {
+                is Result.Success -> {
                     assertThat(response.data).isEqualTo(FakeData.fakeFilms)
                 }
                 else -> {
                 }
             }
-
         } finally {
             viewModel.filmLiveData.removeObserver(observer)
         }
@@ -131,10 +129,10 @@ class CharacterViewModelTest {
 
             val response = viewModel.planetLiveData.value!!
 
-            assertThat(response).isInstanceOf(Idle::class.java)
+            assertThat(response).isInstanceOf(Result.Idle::class.java)
 
             when (response) {
-                is Success -> {
+                is Result.Success -> {
                     assertThat(response.data).isEqualTo(FakeData.fakePlanet)
                 }
                 else -> {
@@ -155,10 +153,10 @@ class CharacterViewModelTest {
 
             val response = viewModel.specieLiveData.value!!
 
-            assertThat(response).isInstanceOf(Idle::class.java)
+            assertThat(response).isInstanceOf(Result.Idle::class.java)
 
             when (response) {
-                is Success -> {
+                is Result.Success -> {
                     assertThat(response.data).isEqualTo(FakeData.fakeSpecies)
                 }
                 else -> {
@@ -168,5 +166,4 @@ class CharacterViewModelTest {
             viewModel.specieLiveData.removeObserver(observer)
         }
     }
-
 }

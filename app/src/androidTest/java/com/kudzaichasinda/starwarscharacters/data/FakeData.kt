@@ -16,10 +16,10 @@ internal object FakeData {
         birthYear = "19BBY",
         films = listOf(
             "https://url/api/films/2/",
-            "https://url/api/films/6/",
+            "https://url/api/films/6/"
         ),
         species = listOf(
-            "https://url/api/species/2/",
+            "https://url/api/species/2/"
         ),
         homeWorld = "https://url/api/planets/9/",
         url = "https://url/api/people/1/"

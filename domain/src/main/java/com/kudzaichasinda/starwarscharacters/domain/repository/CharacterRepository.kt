@@ -14,5 +14,4 @@ interface CharacterRepository {
     suspend fun getPlanetInfo(url: String): Planet
 
     suspend fun getFilmInfo(urls: List<String>): List<Film>
-
 }

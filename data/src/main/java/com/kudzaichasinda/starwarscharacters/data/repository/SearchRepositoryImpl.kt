@@ -5,9 +5,7 @@ import com.kudzaichasinda.starwarscharacters.data.remote.service.ApiService
 import com.kudzaichasinda.starwarscharacters.domain.model.Character
 import com.kudzaichasinda.starwarscharacters.domain.repository.SearchRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
 class SearchRepositoryImpl @Inject constructor(
@@ -16,7 +14,7 @@ class SearchRepositoryImpl @Inject constructor(
 ) : SearchRepository {
 
     override suspend fun searchCharacter(name: String): Flow<List<Character>> {
-        return flow{
+        return flow {
             emit(mapper.mapToDomainList(service.searchCharacter(name).results))
         }
     }

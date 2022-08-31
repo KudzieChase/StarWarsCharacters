@@ -1,17 +1,22 @@
 package com.kudzaichasinda.starwarscharacters.ui.search
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kudzaichasinda.starwarscharacters.domain.interactor.search.SearchCharacter
 import com.kudzaichasinda.starwarscharacters.mapper.CharacterViewMapper
 import com.kudzaichasinda.starwarscharacters.model.CharacterView
 import com.kudzaichasinda.starwarscharacters.util.Result
-import kotlinx.coroutines.flow.*
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException
+import javax.inject.Inject
 
-class SearchViewModel @ViewModelInject constructor(
+@HiltViewModel
+class SearchViewModel @Inject constructor(
     private val searchCharacter: SearchCharacter,
     private val mapper: CharacterViewMapper
 ) : ViewModel() {
@@ -24,7 +29,7 @@ class SearchViewModel @ViewModelInject constructor(
 
     init {
         viewModelScope.launch {
-            //Debounce the input to reduce unnecessary requests to the server
+            // Debounce the input to reduce unnecessary requests to the server
             searchInput.debounce(500).collect {
                 if (it.isEmpty()) {
                     _searchResults.value = Result.Idle
@@ -42,7 +47,6 @@ class SearchViewModel @ViewModelInject constructor(
                             _searchResults.value = Result.Success(mapper.mapToViewList(character))
                         }
                 }
-
             }
         }
     }
@@ -62,5 +66,4 @@ class SearchViewModel @ViewModelInject constructor(
             }
         }
     }
-
 }

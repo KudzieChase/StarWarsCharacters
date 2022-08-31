@@ -13,7 +13,9 @@ class SpecieAdapter : ListAdapter<SpecieView, SpecieAdapter.ItemHolder>(SpecieDi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         return ItemHolder(
             ItemSpecieBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
+                LayoutInflater.from(parent.context),
+                parent,
+                false
             )
         )
     }

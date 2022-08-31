@@ -42,13 +42,11 @@ class SearchViewModelTest {
                     assertThat(characters.data.size).isAtLeast(1)
                 }
                 else -> {
-                    //We aren't interested in other cases
+                    // We aren't interested in other cases
                 }
             }
         } finally {
             viewModel.searchResults.asLiveData().removeObserver(observer)
         }
-
     }
-
 }

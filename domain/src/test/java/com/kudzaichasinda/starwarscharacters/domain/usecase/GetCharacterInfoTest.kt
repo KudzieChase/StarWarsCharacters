@@ -41,6 +41,4 @@ class GetCharacterInfoTest {
 
         assertThat(character).isEqualTo(FakeData.fakeCharacter)
     }
-
-
 }
