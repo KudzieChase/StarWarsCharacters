@@ -23,6 +23,8 @@ fun LottieAnimationView.isAnimating(isLoading: Boolean) {
         playAnimation()
     } else {
         pauseAnimation()
+        // reset the frame to initial state
+        frame = 0
     }
 }
 
