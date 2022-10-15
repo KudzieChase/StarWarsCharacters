@@ -1,24 +1,26 @@
 package com.kudzaichasinda.starwarscharacters.ui.character
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kudzaichasinda.starwarscharacters.domain.interactor.character.GetCharacterInfo
 import com.kudzaichasinda.starwarscharacters.domain.interactor.character.GetFilmInfo
 import com.kudzaichasinda.starwarscharacters.domain.interactor.character.GetPlanetInfo
 import com.kudzaichasinda.starwarscharacters.domain.interactor.character.GetSpecieInfo
+import com.kudzaichasinda.starwarscharacters.domain.model.Resource
 import com.kudzaichasinda.starwarscharacters.mapper.CharacterViewMapper
 import com.kudzaichasinda.starwarscharacters.mapper.FilmViewMapper
 import com.kudzaichasinda.starwarscharacters.mapper.PlanetViewMapper
 import com.kudzaichasinda.starwarscharacters.mapper.SpecieViewMapper
-import com.kudzaichasinda.starwarscharacters.model.CharacterView
-import com.kudzaichasinda.starwarscharacters.model.FilmView
-import com.kudzaichasinda.starwarscharacters.model.PlanetView
-import com.kudzaichasinda.starwarscharacters.model.SpecieView
-import com.kudzaichasinda.starwarscharacters.util.Result
+import com.kudzaichasinda.starwarscharacters.state.CharacterScreenUiState
+import com.kudzaichasinda.starwarscharacters.state.CharacterViewUiState
+import com.kudzaichasinda.starwarscharacters.state.FilmsViewUiState
+import com.kudzaichasinda.starwarscharacters.state.PlanetViewUiState
+import com.kudzaichasinda.starwarscharacters.state.SpeciesViewUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,74 +35,107 @@ class CharacterViewModel @Inject constructor(
     private val planetMapper: PlanetViewMapper
 ) : ViewModel() {
 
-    private val _characterLiveData = MutableLiveData<Result<CharacterView>>()
-    val characterLiveData: LiveData<Result<CharacterView>>
-        get() = _characterLiveData
-
-    private val _filmLiveData = MutableLiveData<Result<List<FilmView>>>()
-    val filmLiveData: LiveData<Result<List<FilmView>>>
-        get() = _filmLiveData
-
-    private val _planetLiveData = MutableLiveData<Result<PlanetView>>()
-    val planetLiveData: LiveData<Result<PlanetView>>
-        get() = _planetLiveData
-
-    private val _specieLiveData = MutableLiveData<Result<List<SpecieView>>>()
-    val specieLiveData: LiveData<Result<List<SpecieView>>>
-        get() = _specieLiveData
-
-    init {
-        _characterLiveData.value = Result.Idle
-        _planetLiveData.value = Result.Idle
-        _specieLiveData.value = Result.Idle
-        _filmLiveData.value = Result.Idle
-    }
+    private val _state = MutableStateFlow(CharacterScreenUiState())
+    val state: StateFlow<CharacterScreenUiState>
+        get() = _state
 
     fun getCharacter(url: String) {
-        viewModelScope.launch {
-            _characterLiveData.value = Result.Loading
-            try {
-                val character = characterMapper.mapToView(getCharacterInfo(url))
-                _characterLiveData.value = Result.Success(character)
-            } catch (e: Exception) {
-                _characterLiveData.value = Result.Error(e.message)
+        getCharacterInfo(url).onEach { result ->
+            when (result) {
+                is Resource.Error -> _state.value = CharacterScreenUiState()
+                    .characterState(
+                        state = CharacterViewUiState().hasError(
+                            error = result.message
+                        )
+                    )
+
+                Resource.Loading -> _state.value = CharacterScreenUiState().characterState(
+                    state = CharacterViewUiState().loading
+                )
+
+                is Resource.Success -> _state.value = CharacterScreenUiState()
+                    .characterState(
+                        state = CharacterViewUiState()
+                            .success(
+                                characterMapper.mapToView(domain = result.data)
+                            )
+                    )
             }
-        }
+        }.launchIn(viewModelScope)
     }
 
     fun getFilms(urls: List<String>) {
-        viewModelScope.launch {
-            _filmLiveData.value = Result.Loading
-            try {
-                val films = filmMapper.mapToViewList(getFilmInfo(urls))
-                _filmLiveData.value = Result.Success(films)
-            } catch (e: Exception) {
-                _filmLiveData.value = Result.Error(e.message)
+        getFilmInfo(urls).onEach { result ->
+            _state.value = when (result) {
+                is Resource.Success ->
+                    CharacterScreenUiState()
+                        .filmsState(
+                            state = FilmsViewUiState().success(
+                                films =
+                                filmMapper.mapToViewList(list = result.data)
+                            )
+                        )
+
+                is Resource.Loading -> CharacterScreenUiState()
+                    .filmsState(
+                        state = FilmsViewUiState().loading
+                    )
+
+                is Resource.Error -> CharacterScreenUiState()
+                    .filmsState(
+                        state = FilmsViewUiState().hasError(error = result.message)
+                    )
             }
-        }
+        }.launchIn(viewModelScope)
     }
 
     fun getHomeWorld(url: String) {
-        viewModelScope.launch {
-            _planetLiveData.value = Result.Loading
-            try {
-                val planet = planetMapper.mapToView(getPlanetInfo(url))
-                _planetLiveData.value = Result.Success(planet)
-            } catch (e: Exception) {
-                _planetLiveData.value = Result.Error(e.message)
+        getPlanetInfo(url).onEach { result ->
+            _state.value = when (result) {
+                is Resource.Success -> CharacterScreenUiState()
+                    .planetState(
+                        state = PlanetViewUiState().success(
+                            planet = planetMapper.mapToView(domain = result.data)
+                        )
+                    )
+
+                is Resource.Loading -> CharacterScreenUiState()
+                    .planetState(
+                        state = PlanetViewUiState().loading
+                    )
+
+                is Resource.Error -> CharacterScreenUiState()
+                    .planetState(
+                        state = PlanetViewUiState().hasError(
+                            error = result.message
+                        )
+                    )
             }
-        }
+        }.launchIn(viewModelScope)
     }
 
     fun getSpecies(urls: List<String>) {
-        viewModelScope.launch {
-            _specieLiveData.value = Result.Loading
-            try {
-                val species = specieMapper.mapToViewList(getSpecieInfo(urls))
-                _specieLiveData.value = Result.Success(species)
-            } catch (e: Exception) {
-                _specieLiveData.value = Result.Error(e.message)
+        getSpecieInfo(urls).onEach { result ->
+            _state.value = when (result) {
+                is Resource.Success -> CharacterScreenUiState()
+                    .speciesState(
+                        state = SpeciesViewUiState().success(
+                            species = specieMapper.mapToViewList(list = result.data)
+                        )
+                    )
+
+                is Resource.Loading -> CharacterScreenUiState()
+                    .speciesState(
+                        state = SpeciesViewUiState().loading
+                    )
+
+                is Resource.Error -> CharacterScreenUiState()
+                    .speciesState(
+                        state = SpeciesViewUiState().hasError(
+                            error = result.message
+                        )
+                    )
             }
-        }
+        }.launchIn(viewModelScope)
     }
 }
