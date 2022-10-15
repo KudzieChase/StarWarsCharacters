@@ -31,22 +31,22 @@ class SearchViewModel @Inject constructor(
         // Debounce the input to reduce unnecessary requests to the server
         searchInput.debounce(500).onEach {
             searchCharacter(it).onEach { result ->
-                _state.value = when (result) {
+                when (result) {
                     is Resource.Error ->
-                        SearchScreenUiState().hasError(message = result.message)
+                        _state.value = SearchScreenUiState().hasError(message = result.message)
 
                     Resource.Loading ->
-                        SearchScreenUiState().loading
+                        _state.value = SearchScreenUiState().loading
 
                     is Resource.Success ->
-                        SearchScreenUiState().success(
+                        _state.value = SearchScreenUiState().success(
                             results = mapper.mapToViewList(
                                 list = result.data
                             )
                         )
                 }
             }.launchIn(viewModelScope)
-        }
+        }.launchIn(viewModelScope)
     }
 
     /**

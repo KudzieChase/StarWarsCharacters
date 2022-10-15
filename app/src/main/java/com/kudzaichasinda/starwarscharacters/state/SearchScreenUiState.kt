@@ -16,8 +16,8 @@ data class SearchScreenUiState(
         get() = copy(isIdle = true, isLoading = false)
 
     fun success(results: List<CharacterView>): SearchScreenUiState =
-        copy(isIdle = true, isLoading = false, searchResults = results)
+        copy(isIdle = false, isLoading = false, searchResults = results)
 
     fun hasError(message: String): SearchScreenUiState =
-        copy(isIdle = true, isLoading = false, error = error)
+        copy(isIdle = false, isLoading = false, error = error)
 }
