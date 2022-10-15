@@ -2,8 +2,8 @@ ext {
 
     //Android Properties
     applicationId = 'com.kudzaichasinda.starwarscharacters'
-    andriodMinSdkVersiob = 21
-    kotlinVersion = '1.6.10'
+    andriodMinSdkVersion = 21
+    kotlinVersion = '1.7.20'
     versionCode = 1
     versionName = "1.0"
 
@@ -40,7 +40,7 @@ ext {
     //Injection
     javaxInjectVersion = '1'
     javaxAnnotationVersion = '1.0'
-    hiltVersion = '2.43.2'
+    hiltVersion = '2.44'
 
     //Testing Version
     jUnitVersion = '4.13.2'
@@ -59,7 +59,6 @@ ext {
             kotlinCoroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}",
             javaxAnnotation : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject     : "javax.inject:javax.inject:${javaxInjectVersion}",
-            kotlin          : "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
     ]
 
     domainTestDependencies = [
@@ -76,7 +75,6 @@ ext {
             javaxAnnotation      : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject          : "javax.inject:javax.inject:${javaxInjectVersion}",
             androidKtx           : "androidx.core:core-ktx:${ktxVersion}",
-            kotlin               : "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}",
             retrofit             : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             moshiConverterFactory: "com.squareup.retrofit2:converter-moshi:${retrofitVersion}",
             okHttp               : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
@@ -101,7 +99,6 @@ ext {
     appDependencies = [
             javaxAnnotation              : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject                  : "javax.inject:javax.inject:${javaxInjectVersion}",
-            kotlin                       : "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}",
             androidKtx                   : "androidx.core:core-ktx:${ktxVersion}",
             constraintLayout             : "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}",
             appCompat                    : "androidx.appcompat:appcompat:${appCompatVersion}",
