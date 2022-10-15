@@ -5,14 +5,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
-
+    namespace 'com.kudzaichasinda.starwarscharacters.data'
+    compileSdkVersion 33
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -29,11 +26,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 }
 
@@ -45,6 +39,8 @@ dependencies {
     implementation project(':domain')
 
     implementation dataDependencies.javaxAnnotation
+    implementation dataDependencies.kotlinCoroutines
+    implementation dataDependencies.androidCoroutines
     implementation dataDependencies.javaxInject
     implementation dataDependencies.androidKtx
     implementation dataDependencies.retrofit

@@ -11,12 +11,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.kudzaichasinda.starwarscharacters.databinding.FragmentSearchBinding
 import com.kudzaichasinda.starwarscharacters.model.CharacterView
-import com.kudzaichasinda.starwarscharacters.util.Result
+import com.kudzaichasinda.starwarscharacters.state.SearchScreenUiState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
@@ -36,6 +39,18 @@ class SearchFragment : Fragment() {
         override fun afterTextChanged(p0: Editable?) {}
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect { viewState ->
+                    renderViewState(viewState = viewState)
+                }
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,42 +64,31 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-
             searchInput.addTextChangedListener(textWatcher)
 
             clearText.setOnClickListener {
                 clear()
             }
+        }
+    }
 
-            viewModel.searchResults.asLiveData()
-                .observe(viewLifecycleOwner, { result ->
-                    when (result) {
-                        is Result.Success -> {
-                            isLoading = false
-                            hideLoadingStateLayout()
-                            showRecyclerView(result.data)
-                        }
-                        is Result.Idle -> {
-                            isLoading = false
-                            showLoadingStateLayout()
-                            hideRecyclerView()
-                            hideEmptyState()
-                        }
-                        is Result.Loading -> {
-                            isLoading = true
-                            showLoadingStateLayout()
-                            hideEmptyState()
-                            hideRecyclerView()
-                        }
-                        is Result.Error -> {
-                            isLoading = false
-                            showLoadingStateLayout()
-                            hideRecyclerView()
-                            Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                    }
-                })
+    private fun renderViewState(viewState: SearchScreenUiState) {
+        binding.isLoading = viewState.isLoading
+
+        showRecyclerView(viewState.searchResults)
+        when {
+            viewState.isLoading || viewState.isIdle -> {
+                showLoadingStateLayout()
+                hideEmptyState()
+                hideRecyclerView()
+            }
+        }
+
+        viewState.error?.let {
+            showLoadingStateLayout()
+            hideRecyclerView()
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
@@ -102,8 +106,8 @@ class SearchFragment : Fragment() {
     }
 
     private fun showRecyclerView(results: List<CharacterView>) {
+        hideLoadingStateLayout()
         binding.apply {
-
             resultsList.visibility = VISIBLE
 
             if (results.isEmpty()) {

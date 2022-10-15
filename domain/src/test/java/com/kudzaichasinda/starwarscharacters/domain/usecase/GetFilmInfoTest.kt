@@ -43,5 +43,4 @@ class GetFilmInfoTest {
 
         assertThat(films).isEqualTo(FakeData.fakeFilms)
     }
-
 }

@@ -2,18 +2,18 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
+    id 'com.google.dagger.hilt.android'
     id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    namespace 'com.kudzaichasinda.starwarscharacters'
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.kudzaichasinda.starwarscharacters"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -33,11 +33,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = '1.8'
+    kapt {
+        correctErrorTypes true
     }
 }
 
@@ -49,7 +49,6 @@ dependencies {
     implementation project(':domain')
 
     implementation appDependencies.materialDesign
-    implementation appDependencies.kotlin
     implementation appDependencies.androidKtx
     implementation appDependencies.appCompat
     implementation appDependencies.constraintLayout
@@ -70,9 +69,7 @@ dependencies {
 
     //DI
     implementation appDependencies.hilt
-    implementation appDependencies.hiltViewModel
     kapt appDependencies.hiltCompiler
-    kapt appDependencies.hiltViewModelCompiler
 
     //Testing
     testImplementation appTestDependencies.junit

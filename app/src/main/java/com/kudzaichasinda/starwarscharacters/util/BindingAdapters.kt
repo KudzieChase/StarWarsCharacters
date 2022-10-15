@@ -12,22 +12,24 @@ import com.kudzaichasinda.starwarscharacters.R
 
 @BindingAdapter("isTextLoading")
 fun TextView.isLoading(isLoading: Boolean) {
-    text = if (isLoading) resources.getText(R.string.animation_searching_text) else
+    text = if (isLoading) resources.getText(R.string.animation_searching_text) else {
         resources.getText(R.string.animation_paused_text)
+    }
 }
 
 @BindingAdapter("isAnimationPlaying")
 fun LottieAnimationView.isAnimating(isLoading: Boolean) {
-    if (isLoading)
+    if (isLoading) {
         playAnimation()
-    else
+    } else {
         pauseAnimation()
+    }
 }
 
 @SuppressLint("SetTextI18n")
 @BindingAdapter("formattedHeight")
 fun TextView.formattedHeight(height: String?) {
-    //Formula for cm to feet reference -- https://byjus.com/maths/how-to-convert-cm-to-feet/
+    // Formula for cm to feet reference -- https://byjus.com/maths/how-to-convert-cm-to-feet/
     height?.let {
         val heightInt = it.toInt()
 
@@ -38,29 +40,22 @@ fun TextView.formattedHeight(height: String?) {
 
         text = "${it}cm or ${feet}ft ${inches}in"
     }
-
-}
-
-@BindingAdapter("shouldGroupShow")
-fun Group.shouldShow(shouldShow: Boolean) {
-    visibility = if (shouldShow)
-        VISIBLE
-    else
-        GONE
 }
 
 @BindingAdapter("isGroupVisible")
 fun Group.isVisible(isLoading: Boolean) {
-    visibility = if (isLoading)
+    visibility = if (isLoading) {
         GONE
-    else
+    } else {
         VISIBLE
+    }
 }
 
 @BindingAdapter("isShowing")
 fun ProgressBar.isShowing(isLoading: Boolean) {
-    visibility = if (isLoading)
+    visibility = if (isLoading) {
         VISIBLE
-    else
+    } else {
         GONE
+    }
 }

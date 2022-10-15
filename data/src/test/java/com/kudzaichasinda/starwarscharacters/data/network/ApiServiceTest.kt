@@ -12,7 +12,6 @@ import com.kudzaichasinda.starwarscharacters.domain.repository.CharacterReposito
 import com.kudzaichasinda.starwarscharacters.domain.repository.SearchRepository
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient

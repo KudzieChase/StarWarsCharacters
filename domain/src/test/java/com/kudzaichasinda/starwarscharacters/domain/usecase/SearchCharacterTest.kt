@@ -9,7 +9,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -42,7 +42,7 @@ class SearchCharacterTest {
     }
 
     @Test
-    fun `checks that SearchCharacter returns a list of characters`() = runBlockingTest {
+    fun `checks that SearchCharacter returns a list of characters`() = runTest {
         stubSearchRepositorySearchCharacter(flowOf(listOf(FakeData.fakeCharacter)))
 
         val characters = searchCharacter(FakeData.characterName).first()
@@ -51,7 +51,7 @@ class SearchCharacterTest {
 
     @Test
     fun `checks that SearchCharacter should be empty when Character is not there`() =
-        runBlockingTest {
+        runTest {
             stubSearchRepositorySearchCharacterNotFound()
 
             val characters = searchCharacter("Grogu").first()
@@ -61,7 +61,7 @@ class SearchCharacterTest {
 
     @Test
     fun `checks that SearchCharacter actually gives us the correct Character`() =
-        runBlockingTest {
+        runTest {
             stubSearchRepositorySearchCharacter(flowOf(listOf(FakeData.fakeCharacter)))
 
             val characters = searchCharacter(FakeData.characterName).first()
@@ -74,7 +74,7 @@ class SearchCharacterTest {
 
     @Test(expected = IllegalArgumentException::class)
     fun `checks that SearchCharacter throws IllegalArgumentException when params is null`() =
-        runBlockingTest {
+        runTest {
             searchCharacter().first()
         }
 }

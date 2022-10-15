@@ -8,13 +8,21 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.kudzaichasinda.starwarscharacters.databinding.FragmentCharacterBinding
+import com.kudzaichasinda.starwarscharacters.state.CharacterScreenUiState
+import com.kudzaichasinda.starwarscharacters.state.CharacterViewUiState
+import com.kudzaichasinda.starwarscharacters.state.FilmsViewUiState
+import com.kudzaichasinda.starwarscharacters.state.PlanetViewUiState
+import com.kudzaichasinda.starwarscharacters.state.SpeciesViewUiState
 import com.kudzaichasinda.starwarscharacters.ui.character.adapter.FilmAdapter
 import com.kudzaichasinda.starwarscharacters.ui.character.adapter.SpecieAdapter
-import com.kudzaichasinda.starwarscharacters.util.Result
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CharacterFragment : Fragment() {
@@ -25,6 +33,18 @@ class CharacterFragment : Fragment() {
     private val viewModel: CharacterViewModel by viewModels()
 
     private val args: CharacterFragmentArgs by navArgs()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect { viewState ->
+                    renderViewState(viewState = viewState)
+                }
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,127 +62,82 @@ class CharacterFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        observeCharacterLiveData()
-        observePlanetLiveData()
-        observeFilmLiveData()
-        observeSpecieLiveData()
-
         viewModel.getCharacter(args.url)
     }
 
-    private fun observeCharacterLiveData() {
-        viewModel.characterLiveData.observe(viewLifecycleOwner, { result ->
-            when (result) {
-                is Result.Success -> {
-                    binding.isCharacterLoading = false
-                    binding.toolbar.title = result.data.name
-
-                    val character = result.data
-                    binding.character = character
-
-                    if (character.species.isEmpty())
-                        binding.groupSpecie.visibility = GONE
-
-                    viewModel.getFilms(character.films)
-                    viewModel.getHomeWorld(character.homeWorld)
-                    viewModel.getSpecies(character.species)
-                }
-                is Result.Idle -> {
-
-                }
-                is Result.Loading -> {
-                    binding.isCharacterLoading = true
-                }
-                is Result.Error -> {
-                    binding.isCharacterLoading = false
-                    result.message?.let { showToast(it) }
-                }
-            }
-        })
+    private fun renderViewState(viewState: CharacterScreenUiState) {
+        renderCharacterState(viewState = viewState.characterUiState)
+        renderPlanetState(viewState = viewState.planetUiState)
+        renderSpecieState(viewState = viewState.speciesViewUiState)
+        renderFilmState(viewState = viewState.filmsUiState)
     }
 
-    private fun observePlanetLiveData() {
-        viewModel.planetLiveData.observe(viewLifecycleOwner, { result ->
-            when (result) {
-                is Result.Success -> {
-                    binding.isPlanetLoading = false
-                    val planet = result.data
+    private fun renderCharacterState(viewState: CharacterViewUiState) {
+        binding.isCharacterLoading = viewState.isLoading
 
-                    binding.planet = planet
-                }
-                is Result.Idle -> {
+        viewState.character?.let { character ->
+            binding.toolbar.title = character.name
 
-                }
-                is Result.Loading -> {
-                    binding.isPlanetLoading = true
-                }
-                is Result.Error -> {
-                    binding.isPlanetLoading = false
-                    result.message?.let { showToast(it) }
-                }
+            binding.character = character
+
+            if (character.species.isEmpty()) {
+                binding.groupSpecie.visibility = GONE
             }
-        })
+
+            viewModel.getFilms(character.films)
+            viewModel.getHomeWorld(character.homeWorld)
+            viewModel.getSpecies(character.species)
+        }
+
+        viewState.error?.let {
+            showToast(it)
+        }
     }
 
-    private fun observeSpecieLiveData() {
-        viewModel.specieLiveData.observe(viewLifecycleOwner, { result ->
-            when (result) {
-                is Result.Success -> {
-                    binding.specieShouldShow = true
+    private fun renderPlanetState(viewState: PlanetViewUiState) {
+        binding.isPlanetLoading = viewState.isLoading
+        viewState.planet?.let { planet ->
+            binding.planet = planet
+        }
 
-                    val species = result.data
-
-                    if(species.isEmpty())
-                        binding.specieShouldShow = false
-                    else{
-                        binding.speciesList.apply {
-                            adapter = SpecieAdapter().apply {
-                                submitList(species)
-                            }
-                        }
-                    }
-                }
-                is Result.Idle -> {
-
-                }
-                is Result.Loading -> {
-                    binding.specieShouldShow = false
-                }
-
-                is Result.Error -> {
-                    binding.specieShouldShow = false
-                    result.message?.let { showToast(it) }
-                }
-            }
-        })
+        viewState.error?.let {
+            showToast(it)
+        }
     }
 
-    private fun observeFilmLiveData() {
-        viewModel.filmLiveData.observe(viewLifecycleOwner, { result ->
-            when (result) {
-                is Result.Success -> {
-                    binding.isFilmsLoading = false
-                    val films = result.data
+    private fun renderSpecieState(viewState: SpeciesViewUiState) {
+        binding.isSpeciesLoading = viewState.isLoading
 
-                    binding.filmList.apply {
-                        adapter = FilmAdapter().apply {
-                            submitList(films)
-                        }
-                    }
-                }
-                is Result.Idle -> {
+        val species = viewState.species
 
-                }
-                is Result.Loading -> {
-                    binding.isFilmsLoading = true
-                }
-
-                is Result.Error -> {
-                    binding.isFilmsLoading = false
-                    result.message?.let { showToast(it) }
+        if (species.isEmpty()) {
+            binding.groupSpecie.visibility = GONE
+        } else {
+            binding.speciesList.apply {
+                adapter = SpecieAdapter().apply {
+                    submitList(species)
                 }
             }
-        })
+        }
+
+        viewState.error?.let {
+            showToast(it)
+        }
+    }
+
+    private fun renderFilmState(viewState: FilmsViewUiState) {
+        binding.isFilmsLoading = viewState.isLoading
+        val films = viewState.films
+
+        binding.filmList.apply {
+            adapter = FilmAdapter().apply {
+                submitList(films)
+            }
+        }
+
+        viewState.error?.let {
+            showToast(it)
+        }
     }
 
     private fun showToast(message: String) {
