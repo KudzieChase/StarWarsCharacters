@@ -21,7 +21,7 @@
             type="Boolean" />
 
         <variable
-            name="specieShouldShow"
+            name="isSpeciesLoading"
             type="Boolean" />
 
         <variable
@@ -190,7 +190,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:constraint_referenced_ids="title_specie_info,species_list"
-                    app:shouldGroupShow="@{specieShouldShow}" />
+                    app:isGroupVisible="@{isSpeciesLoading}" />
 
                 <androidx.constraintlayout.widget.Group
                     android:id="@+id/group_films"
