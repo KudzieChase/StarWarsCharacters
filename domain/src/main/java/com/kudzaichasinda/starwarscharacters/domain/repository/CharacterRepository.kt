@@ -3,15 +3,17 @@ package com.kudzaichasinda.starwarscharacters.domain.repository
 import com.kudzaichasinda.starwarscharacters.domain.model.Character
 import com.kudzaichasinda.starwarscharacters.domain.model.Film
 import com.kudzaichasinda.starwarscharacters.domain.model.Planet
+import com.kudzaichasinda.starwarscharacters.domain.model.Resource
 import com.kudzaichasinda.starwarscharacters.domain.model.Specie
+import kotlinx.coroutines.flow.Flow
 
 interface CharacterRepository {
 
-    suspend fun getCharacterInfo(url: String): Character
+    fun getCharacterInfo(url: String): Flow<Resource<Character>>
 
-    suspend fun getSpecieInfo(urls: List<String>): List<Specie>
+    fun getSpecieInfo(urls: List<String>): Flow<Resource<List<Specie>>>
 
-    suspend fun getPlanetInfo(url: String): Planet
+    fun getPlanetInfo(url: String): Flow<Resource<Planet>>
 
-    suspend fun getFilmInfo(urls: List<String>): List<Film>
+    fun getFilmInfo(urls: List<String>): Flow<Resource<List<Film>>>
 }
