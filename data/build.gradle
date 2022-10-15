@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+    namespace 'com.kudzaichasinda.starwarscharacters.data'
     compileSdkVersion 33
     defaultConfig {
         minSdkVersion 21
@@ -38,7 +39,6 @@ dependencies {
     implementation project(':domain')
 
     implementation dataDependencies.javaxAnnotation
-    implementation dataDependencies.kotlin
     implementation dataDependencies.kotlinCoroutines
     implementation dataDependencies.androidCoroutines
     implementation dataDependencies.javaxInject

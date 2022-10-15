@@ -1,12 +1,13 @@
 plugins {
     id 'kotlin'
+    id 'java-library'
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     def domainDependencies = rootProject.ext.domainDependencies
     def domainTestDependencies = rootProject.ext.domainTestDependencies
 
-    implementation domainDependencies.kotlin
     implementation domainDependencies.kotlinCoroutines
     implementation domainDependencies.javaxInject
     implementation domainDependencies.javaxAnnotation
@@ -16,4 +17,9 @@ dependencies {
     testImplementation domainTestDependencies.assertj
     testImplementation domainTestDependencies.truth
     testImplementation domainTestDependencies.kotlinCoroutines
+}
+
+java {
+    sourceCompatibility JavaVersion.VERSION_11
+    targetCompatibility JavaVersion.VERSION_11
 }

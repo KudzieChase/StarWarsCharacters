@@ -7,6 +7,7 @@ plugins {
 }
 
 android {
+    namespace 'com.kudzaichasinda.starwarscharacters'
     compileSdkVersion 33
 
     defaultConfig {
@@ -35,6 +36,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+    kapt {
+        correctErrorTypes true
+    }
 }
 
 dependencies {
@@ -45,7 +49,6 @@ dependencies {
     implementation project(':domain')
 
     implementation appDependencies.materialDesign
-    implementation appDependencies.kotlin
     implementation appDependencies.androidKtx
     implementation appDependencies.appCompat
     implementation appDependencies.constraintLayout
