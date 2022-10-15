@@ -42,15 +42,6 @@ fun TextView.formattedHeight(height: String?) {
     }
 }
 
-@BindingAdapter("shouldGroupShow")
-fun Group.shouldShow(shouldShow: Boolean) {
-    visibility = if (shouldShow) {
-        VISIBLE
-    } else {
-        GONE
-    }
-}
-
 @BindingAdapter("isGroupVisible")
 fun Group.isVisible(isLoading: Boolean) {
     visibility = if (isLoading) {
